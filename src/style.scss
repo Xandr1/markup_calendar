@@ -1,0 +1,60 @@
+@import "reset";
+
+$default-font-family: Arial, Helvetica, sans-serif;
+$default-font-size: 30px;
+$default-width: 100px;
+$default-height: 100px;
+$default-background-color: #eeeeee;
+
+.calendar {
+    position: absolute;
+    margin: 150px;
+
+   div {
+    position: relative;
+    font-family: $default-font-family;
+    font-size: $default-font-size;
+    width: $default-width;
+    height: $default-height;
+    background-color: $default-background-color;
+    border: 1px solid black;
+    box-sizing: border-box;
+
+    &:hover {
+        background-color: pink;
+        bottom: 20px;
+        cursor: pointer;
+        transition: all 0.25s;
+    }
+  }
+}
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 100px);
+    grid-gap: 1px;
+}
+
+@for $i from 1 through 31 {
+    div:nth-child(#{$i})::before {
+        content: "#{$i}";
+        display: block;
+        text-align: center;
+        line-height: $default-height;
+    }
+}
+
+$week: "mon", "tue", "wed", "thu", "fri", "sat", "sun";
+$i: 1; 
+
+@each $day in $week {
+    .calendar-#{$day} > div:nth-child(1) {
+      grid-column-start: #{$i}; 
+    }
+    $i: $i + 1; 
+  }
+
+  @for $i from 28 through 31 {
+    .calendar-#{$i} div:nth-last-child(-n+#{31-$i}) {
+        display: none;
+    }
+}
