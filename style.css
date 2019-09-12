@@ -3,6 +3,9 @@ body {
 }
 
 .calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 100px);
+  grid-gap: 1px;
   position: absolute;
   margin: 150px;
 }
@@ -21,12 +24,6 @@ body {
   bottom: 20px;
   cursor: pointer;
   transition: all 0.25s;
-}
-
-.calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 100px);
-  grid-gap: 1px;
 }
 
 div:nth-child(1)::before {
